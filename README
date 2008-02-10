@@ -1,0 +1,15 @@
+Small add-ons to Feedme_ to make easier to build a photo-planet: aggregator of online photos (with RSS/Atom).
+
+Requires:
+---------
+
+ * Feedme_
+
+Install
+-------
+
+Put it as another 'INSTALLED_APPS' on your settings.py so Django can reach the templatetags.
+
+
+
+_Feedme: http://www.moregruel.net/index.php/projects/

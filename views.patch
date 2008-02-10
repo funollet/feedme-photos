@@ -1,0 +1,27 @@
+--- /home/jordif/Desktop/feedme-3d4b26caff5c/views.py	2007-08-19 01:25:45.000000000 +0200
++++ feedme/views.py	2008-01-13 19:19:47.000000000 +0100
+@@ -2,13 +2,16 @@
+ 
+ from django.http import HttpResponseRedirect
+ from django.shortcuts import render_to_response
++from django.template import RequestContext
+ from django.core.urlresolvers import reverse
+ from feedme.models import Feed
+ 
+ 
+ def index(request):
+     feeds = Feed.objects.all().order_by('group', 'order')
+-    return render_to_response('feedme/index.html', {'feeds': feeds})
++    return render_to_response('feedme/index.html', {'feeds': feeds},
++                              context_instance=RequestContext(request))
++
+ 
+ def update_feed(feed, force=False):
+ 
+@@ -53,4 +56,5 @@
+             entries.append(newent)
+             
+     return render_to_response('feedme/feedfull.html',
+-                              {'feed': feed, 'id':feed_id, 'entries':entries})
++                              {'feed': feed, 'id':feed_id, 'entries':entries},
++                              context_instance=RequestContext(request))
